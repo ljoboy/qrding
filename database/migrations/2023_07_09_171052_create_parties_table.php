@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->time('start_time')->nullable();
-            $table->smallInteger('duration')->comment('The duration in minutes')->nullable();
+            $table->UnsignedSmallInteger('duration')->comment('The duration in minutes')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
