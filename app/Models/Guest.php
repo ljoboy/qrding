@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\GuestType;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,6 +28,7 @@ class Guest extends Model
 
     protected $casts = [
         'is_active' => 'boolean',
+        'type' => GuestType::class,
     ];
 
     protected array $dates = [
