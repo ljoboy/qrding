@@ -1,6 +1,11 @@
 export default {
     plugins: {
-        tailwindcss: {},
+        postcssImport: {},
+        postcssAdvancedVariables: {},
+        postcssNested: {},
+        tailwindcss: {
+            config: './tailwind.config.js',
+        },
         autoprefixer: {},
     },
 };
