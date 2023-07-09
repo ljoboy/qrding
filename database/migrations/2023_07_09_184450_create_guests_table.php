@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('phone')->nullable();
             $table->string('qr_code')->nullable();
             $table->enum('type', ['single', 'couple', 'family', 'group'])->default('single');
-            $table->boolean('is_occupied')->default(false);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->softDeletes();
 
