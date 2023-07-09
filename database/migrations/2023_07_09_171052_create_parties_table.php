@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('guests', function (Blueprint $table) {
+        Schema::create('parties', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->time('start_time')->nullable();
+            $table->smallInteger('duration')->comment('The duration in minutes')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('guests');
+        Schema::dropIfExists('parties');
     }
 };
