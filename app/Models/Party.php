@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use DateTimeInterface;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,6 +24,11 @@ class Party extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+    ];
+
+    protected $casts = [
+        'start_time' => 'datetime',
+        'end_time' => 'datetime',
     ];
 
     public function guests(): HasMany
@@ -47,11 +53,15 @@ class Party extends Model
 
     public function scopePast($query)
     {
-        return $query->whereNotNull('end_time')->where('end_time', '<', now());
+        return $query->where('end_time', '<', now());
     }
 
     protected function serializeDate(DateTimeInterface $date): string
     {
         return $date->format('Y-m-d H:i:s');
+    }
+    public function setEndTimeAttribute($value): void
+    {
+        $this->attributes['end_time'] = $this->attributes['start_time']->addMinutes($this->attributes['duration']);
     }
 }
