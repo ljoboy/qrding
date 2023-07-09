@@ -13,10 +13,11 @@ return new class extends Migration {
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('max_guests');
+            $table->UnsignedSmallInteger('seats')->default(1);
             $table->boolean('is_occupied')->default(false);
             $table->unsignedBigInteger('party_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('party_id')->references('id')->on('parties')->onDelete('cascade');
         });
