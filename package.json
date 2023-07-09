@@ -6,14 +6,9 @@
         "build": "vite build"
     },
     "dependencies": {
-        "@ckeditor/ckeditor5-build-balloon": "38.1.0",
-        "@ckeditor/ckeditor5-build-balloon-block": "38.1.0",
-        "@ckeditor/ckeditor5-build-classic": "38.1.0",
-        "@ckeditor/ckeditor5-build-decoupled-document": "38.1.0",
-        "@ckeditor/ckeditor5-build-inline": "38.1.0",
-        "@fullcalendar/core": "6.1.8",
-        "@fullcalendar/daygrid": "6.1.8",
-        "@fullcalendar/interaction": "6.1.8",
+        "@fullcalendar/core": "^6.1.8",
+        "@fullcalendar/daygrid": "^6.1.8",
+        "@fullcalendar/interaction": "^6.1.8",
         "@fullcalendar/list": "6.1.8",
         "@fullcalendar/timegrid": "6.1.8",
         "@left4code/tw-starter": "3.2.9",
@@ -44,7 +39,8 @@
         "postcss": "^8.1.14",
         "postcss-advanced-variables": "^3.0.1",
         "postcss-cli": "^9.1.0",
-        "postcss-import": "^14.0.2",
+        "postcss-import": "^15.1.0",
+        "postcss-nesting": "^12.0.0",
         "tailwindcss": "^3.0.24",
         "vite": "^4.4.2",
         "vite-plugin-static-copy": "^0.16.0"

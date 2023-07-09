@@ -1,11 +1,9 @@
+// Example usage
 export default {
-    plugins: {
-        postcssImport: {},
-        postcssAdvancedVariables: {},
-        postcssNested: {},
-        tailwindcss: {
-            config: './tailwind.config.js',
-        },
-        autoprefixer: {},
+    'postcss-import': {},
+    'tailwindcss/nesting': 'postcss-nesting',
+    tailwindcss: {},
+    'postcss-preset-env': {
+        features: {'nesting-rules': false},
     },
 };
