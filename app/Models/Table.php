@@ -20,6 +20,10 @@ class Table extends Model
         'party_id',
     ];
 
+    protected $casts = [
+        'is_occupied' => 'boolean',
+    ];
+
     protected array $dates = [
         'created_at',
         'updated_at',
