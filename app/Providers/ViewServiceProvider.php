@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\View\Composers\ColorSchemeComposer;
 use App\View\Composers\DarkModeComposer;
 use App\View\Composers\LoggedInUserComposer;
 use App\View\Composers\MenuComposer;
@@ -25,8 +24,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('*', MenuComposer::class);
-        View::composer('*', DarkModeComposer::class);
         View::composer('*', LoggedInUserComposer::class);
-        View::composer('*', ColorSchemeComposer::class);
+        View::composer('*', DarkModeComposer::class);
     }
 }
