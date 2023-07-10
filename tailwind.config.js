@@ -1,15 +1,18 @@
-import forms from '@tailwindcss/forms';
-import colors from 'tailwindcss/colors';
-import {toRGB, withOpacityValue} from '@left4code/tw-starter/dist/js/tailwind-config-helper'
+const colors = require("tailwindcss/colors");
+const {
+    toRGB,
+    withOpacityValue,
+} = require("@left4code/tw-starter/dist/js/tailwind-config-helper");
 
-/** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
+    mode: "jit",
     content: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
+        "./src/**/*.{php,html,js,jsx,ts,tsx,vue}",
+        "./resources/**/*.{php,html,js,jsx,ts,tsx,vue}",
+        "./node_modules/@left4code/tw-starter/**/*.js",
+        // ".//*.html",
     ],
-
+    darkMode: "class",
     theme: {
         extend: {
             colors: {
@@ -94,11 +97,10 @@ export default {
             },
         },
     },
-
-    plugins: [forms],
+    plugins: [require("@tailwindcss/forms")],
     variants: {
         extend: {
             boxShadow: ["dark"],
-        }
-    }
+        },
+    },
 };
