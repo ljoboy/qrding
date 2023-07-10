@@ -2,18 +2,10 @@
 
 namespace App\Enums;
 
-enum LayoutEnum
+enum LayoutEnum: string
 {
-    case SIDEMENU;
-    case TOPMENU;
-    case SIMPLEMENU;
-
-    public static function from(string $layout): LayoutEnum
-    {
-        return match ($layout) {
-            'side-menu' => self::SIDEMENU,
-            'top-menu' => self::TOPMENU,
-            'simple-menu' => self::SIMPLEMENU,
-        };
-    }
+    case SIDEMENU = 'side-menu';
+    case TOPMENU = 'top-menu';
+    case SIMPLEMENU = 'simple-menu';
+    case LOGIN = 'login';
 }
