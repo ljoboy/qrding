@@ -1,0 +1,118 @@
+<?php
+
+namespace App\View\Composers;
+
+use App\Enums\LayoutEnum;
+use App\Main\MenuBuilder;
+use Illuminate\View\View;
+
+class MenuComposer
+{
+    /**
+     * Bind data to the view.
+     *
+     * @param View $view
+     * @return void
+     */
+    public function compose(View $view): void
+    {
+        if (!is_null(request()->route())) {
+            $pageName = request()->route()->getName();
+            $layout = LayoutEnum::from($this->layout($view));
+            $activeMenu = $this->activeMenu($pageName, $layout);
+
+            $view->with('top_menu', MenuBuilder::menu());
+            $view->with('side_menu', MenuBuilder::menu());
+            $view->with('simple_menu', MenuBuilder::menu());
+            $view->with('first_level_active_index', $activeMenu['first_level_active_index']);
+            $view->with('second_level_active_index', $activeMenu['second_level_active_index']);
+            $view->with('third_level_active_index', $activeMenu['third_level_active_index']);
+            $view->with('page_name', $pageName);
+            $view->with('layout', $layout);
+        }
+    }
+
+    /**
+     * Specify the layout to use for the current view.
+     *
+     * @param View $view
+     * @return string
+     */
+    public function layout(View $view): string
+    {
+        if (isset($view->layout)) {
+            return $view->layout;
+        }
+
+        if (request()->has('layout')) {
+            return request()->query('layout');
+        }
+
+        return 'side-menu';
+    }
+
+    /**
+     * Determine the active menu item & submenu.
+     *
+     * @param string $pageName
+     * @param LayoutEnum $layout
+     * @return array
+     */
+    public function activeMenu(string $pageName, LayoutEnum $layout): array
+    {
+        $menu = MenuBuilder::menu($layout);
+
+        $activeMenu = $this->findActiveMenu($menu, $pageName);
+
+        return [
+            'first_level_active_index' => $activeMenu['first_level_active_index'],
+            'second_level_active_index' => $activeMenu['second_level_active_index'],
+            'third_level_active_index' => $activeMenu['third_level_active_index']
+        ];
+    }
+
+    /**
+     * Determine the active menu item & submenu.
+     *
+     * @param array $menu
+     * @param string $pageName
+     * @return array
+     */
+    private function findActiveMenu(array $menu, string $pageName): array
+    {
+        $firstLevelActiveIndex = '';
+        $secondLevelActiveIndex = '';
+        $thirdLevelActiveIndex = '';
+
+        foreach ($menu as $menuKey => $menuItem) {
+            if ($menuItem !== 'devider' && isset($menuItem['route_name']) && $menuItem['route_name'] == $pageName && empty($firstLevelActiveIndex)) {
+                $firstLevelActiveIndex = $menuKey;
+            }
+
+            if (isset($menuItem['sub_menu'])) {
+                foreach ($menuItem['sub_menu'] as $subMenuKey => $subMenuItem) {
+                    if (isset($subMenuItem['route_name']) && $subMenuItem['route_name'] == $pageName && $menuKey != 'menu-layout' && empty($secondLevelActiveIndex)) {
+                        $firstLevelActiveIndex = $menuKey;
+                        $secondLevelActiveIndex = $subMenuKey;
+                    }
+
+                    if (isset($subMenuItem['sub_menu'])) {
+                        foreach ($subMenuItem['sub_menu'] as $lastSubMenuKey => $lastSubMenu) {
+                            if (isset($lastSubMenu['route_name']) && $lastSubMenu['route_name'] == $pageName) {
+                                $firstLevelActiveIndex = $menuKey;
+                                $secondLevelActiveIndex = $subMenuKey;
+                                $thirdLevelActiveIndex = $lastSubMenuKey;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return [
+            'first_level_active_index' => $firstLevelActiveIndex,
+            'second_level_active_index' => $secondLevelActiveIndex,
+            'third_level_active_index' => $thirdLevelActiveIndex
+        ];
+    }
+}
