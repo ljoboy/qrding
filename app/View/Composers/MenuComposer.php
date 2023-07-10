@@ -18,17 +18,17 @@ class MenuComposer
     {
         if (!is_null(request()->route())) {
             $pageName = request()->route()->getName();
-            $layout = LayoutEnum::from($this->layout($view));
+            $layout = $this->layout($view);
             $activeMenu = $this->activeMenu($pageName, $layout);
 
-            $view->with('top_menu', MenuBuilder::menu());
-            $view->with('side_menu', MenuBuilder::menu());
-            $view->with('simple_menu', MenuBuilder::menu());
+            $view->with('top_menu', MenuBuilder::menu($layout));
+            $view->with('side_menu', MenuBuilder::menu($layout));
+            $view->with('simple_menu', MenuBuilder::menu($layout));
             $view->with('first_level_active_index', $activeMenu['first_level_active_index']);
             $view->with('second_level_active_index', $activeMenu['second_level_active_index']);
             $view->with('third_level_active_index', $activeMenu['third_level_active_index']);
             $view->with('page_name', $pageName);
-            $view->with('layout', $layout);
+            $view->with('layout', $layout->value);
         }
     }
 
@@ -36,19 +36,20 @@ class MenuComposer
      * Specify the layout to use for the current view.
      *
      * @param View $view
-     * @return string
+     * @return LayoutEnum
      */
-    public function layout(View $view): string
+    public function layout(View $view): LayoutEnum
     {
+        $layout = null;
         if (isset($view->layout)) {
-            return $view->layout;
+            $layout = $view->layout;
         }
 
         if (request()->has('layout')) {
-            return request()->query('layout');
+            $layout = request()->query('layout');
         }
 
-        return 'side-menu';
+        return LayoutEnum::tryFrom($layout) ?? LayoutEnum::SIDEMENU;
     }
 
     /**
