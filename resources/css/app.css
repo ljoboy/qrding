@@ -13,51 +13,51 @@
 @import "./_tailwind.css";
 
 /*
-   |--------------------------------------------------------------------------
-   | Colors
-   |--------------------------------------------------------------------------
-   |
-   | Import all fonts used in the template, the font configuration can be
-   | seen in "tailwind.config.js".
-   |
-   | Please check this link for more details:
-   | https://tailwindcss.com/docs/theme
-   |
-   */
+ |--------------------------------------------------------------------------
+ | Colors
+ |--------------------------------------------------------------------------
+ |
+ | Import all fonts used in the template, the font configuration can be
+ | seen in "tailwind.config.js".
+ |
+ | Please check this link for more details:
+ | https://tailwindcss.com/docs/theme
+ |
+ */
 @import "./_colors.css";
 
 /*
-   |--------------------------------------------------------------------------
-   | Fonts
-   |--------------------------------------------------------------------------
-   |
-   | Import all fonts used in the template, the font configuration can be
-   | seen in "tailwind.config.js".
-   |
-   | Please check this link for more details:
-   | https://tailwindcss.com/docs/theme
-   |
-   */
+ |--------------------------------------------------------------------------
+ | Fonts
+ |--------------------------------------------------------------------------
+ |
+ | Import all fonts used in the template, the font configuration can be
+ | seen in "tailwind.config.js".
+ |
+ | Please check this link for more details:
+ | https://tailwindcss.com/docs/theme
+ |
+ */
 @import "./fonts/_roboto.css";
 
 /*
-   |--------------------------------------------------------------------------
-   | Mixins
-   |--------------------------------------------------------------------------
-   |
-   | Import helper mixins.
-   |
-   */
+ |--------------------------------------------------------------------------
+ | Mixins
+ |--------------------------------------------------------------------------
+ |
+ | Import helper mixins.
+ |
+ */
 @import "@left4code/tw-starter/dist/css/mixins/_media.css";
 
 /*
-   |--------------------------------------------------------------------------
-   | 3rd Party Libraries
-   |--------------------------------------------------------------------------
-   |
-   | Import 3rd party library CSS/SASS files.
-   |
-   */
+ |--------------------------------------------------------------------------
+ | 3rd Party Libraries
+ |--------------------------------------------------------------------------
+ |
+ | Import 3rd party library CSS/SASS files.
+ |
+ */
 @import "@left4code/tw-starter/dist/css/_breadcrumb.css";
 @import "@left4code/tw-starter/dist/css/_accordion.css";
 @import "@left4code/tw-starter/dist/css/_alert.css";
@@ -94,17 +94,17 @@
 @import "tabulator-tables/dist/css/tabulator.css";
 @import "tom-select/dist/css/tom-select.css";
 @import "tiny-slider/dist/tiny-slider.css";
-@import "simplebar/dist/simplebar.css";
 
 /*
  |--------------------------------------------------------------------------
  | Components
  |--------------------------------------------------------------------------
  |
- | Import CSS/SCSS components.
+ | Import CSS components.
  |
  */
 @import "./components/_global.css";
+@import "./components/_top-bar.css";
 @import "./components/_login.css";
 @import "./components/_table-report.css";
 @import "./components/_report-chart.css";
