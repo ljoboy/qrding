@@ -1,9 +1,8 @@
 // Example usage
 export default {
     'postcss-import': {},
+    'postcss-advanced-variables': {},
     'tailwindcss/nesting': 'postcss-nesting',
     tailwindcss: {},
-    'postcss-preset-env': {
-        features: {'nesting-rules': false},
-    },
+    autoprefixer: {},
 };
