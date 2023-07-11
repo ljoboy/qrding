@@ -1,4 +1,10 @@
-<x-guest-layout>
+@extends('../layout/' . $layout)
+
+@section('head')
+    <title>{{__('login.login')}} - QRding</title>
+@endsection
+
+@section('content')
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 
@@ -36,4 +42,7 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+@endsection
+
+@section('scripts')
+@endsection
