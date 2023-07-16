@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ColorSchemeController;
 use App\Http\Controllers\DarkModeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -32,3 +31,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+Route::fallback(function () {
+    return view('errors.404');
+})->name('404');
