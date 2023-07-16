@@ -1,22 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
-use App\View\Composers\FakerComposer;
 use App\View\Composers\DarkModeComposer;
+use App\View\Composers\FakerComposer;
 use App\View\Composers\LoggedInUserComposer;
 use App\View\Composers\MenuComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class ViewServiceProvider extends ServiceProvider
+final class ViewServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
      */
     public function register(): void
     {
-        //
+
     }
 
     /**

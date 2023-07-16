@@ -1,22 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\View\Composers;
 
 use App\Enums\LayoutEnum;
 use App\Main\MenuBuilder;
 use Illuminate\View\View;
 
-class MenuComposer
+final class MenuComposer
 {
     /**
      * Bind data to the view.
-     *
-     * @param View $view
-     * @return void
      */
     public function compose(View $view): void
     {
-        if (!is_null(request()->route())) {
+        if (null !== request()->route()) {
             $pageName = request()->route()->getName();
             $layout = $this->layout($view);
             $activeMenu = $this->activeMenu($pageName, $layout);
@@ -34,9 +33,6 @@ class MenuComposer
 
     /**
      * Specify the layout to use for the current view.
-     *
-     * @param View $view
-     * @return LayoutEnum
      */
     public function layout(View $view): LayoutEnum
     {
@@ -54,10 +50,6 @@ class MenuComposer
 
     /**
      * Determine the active menu item & submenu.
-     *
-     * @param string $pageName
-     * @param LayoutEnum $layout
-     * @return array
      */
     public function activeMenu(string $pageName, LayoutEnum $layout): array
     {
@@ -68,16 +60,12 @@ class MenuComposer
         return [
             'first_level_active_index' => $activeMenu['first_level_active_index'],
             'second_level_active_index' => $activeMenu['second_level_active_index'],
-            'third_level_active_index' => $activeMenu['third_level_active_index']
+            'third_level_active_index' => $activeMenu['third_level_active_index'],
         ];
     }
 
     /**
      * Determine the active menu item & submenu.
-     *
-     * @param array $menu
-     * @param string $pageName
-     * @return array
      */
     private function findActiveMenu(array $menu, string $pageName): array
     {
@@ -86,20 +74,20 @@ class MenuComposer
         $thirdLevelActiveIndex = '';
 
         foreach ($menu as $menuKey => $menuItem) {
-            if ($menuItem !== 'devider' && isset($menuItem['route_name']) && $menuItem['route_name'] == $pageName && empty($firstLevelActiveIndex)) {
+            if ('devider' !== $menuItem && isset($menuItem['route_name']) && $menuItem['route_name'] === $pageName && empty($firstLevelActiveIndex)) {
                 $firstLevelActiveIndex = $menuKey;
             }
 
             if (isset($menuItem['sub_menu'])) {
                 foreach ($menuItem['sub_menu'] as $subMenuKey => $subMenuItem) {
-                    if (isset($subMenuItem['route_name']) && $subMenuItem['route_name'] == $pageName && $menuKey != 'menu-layout' && empty($secondLevelActiveIndex)) {
+                    if (isset($subMenuItem['route_name']) && $subMenuItem['route_name'] === $pageName && 'menu-layout' !== $menuKey && empty($secondLevelActiveIndex)) {
                         $firstLevelActiveIndex = $menuKey;
                         $secondLevelActiveIndex = $subMenuKey;
                     }
 
                     if (isset($subMenuItem['sub_menu'])) {
                         foreach ($subMenuItem['sub_menu'] as $lastSubMenuKey => $lastSubMenu) {
-                            if (isset($lastSubMenu['route_name']) && $lastSubMenu['route_name'] == $pageName) {
+                            if (isset($lastSubMenu['route_name']) && $lastSubMenu['route_name'] === $pageName) {
                                 $firstLevelActiveIndex = $menuKey;
                                 $secondLevelActiveIndex = $subMenuKey;
                                 $thirdLevelActiveIndex = $lastSubMenuKey;
@@ -113,7 +101,7 @@ class MenuComposer
         return [
             'first_level_active_index' => $firstLevelActiveIndex,
             'second_level_active_index' => $secondLevelActiveIndex,
-            'third_level_active_index' => $thirdLevelActiveIndex
+            'third_level_active_index' => $thirdLevelActiveIndex,
         ];
     }
 }

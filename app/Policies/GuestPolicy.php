@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\Guest;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
-class GuestPolicy
+final class GuestPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        //
+
     }
 
     /**
@@ -21,7 +22,7 @@ class GuestPolicy
      */
     public function view(User $user, Guest $guest): bool
     {
-        //
+
     }
 
     /**
@@ -29,7 +30,7 @@ class GuestPolicy
      */
     public function create(User $user): bool
     {
-        //
+
     }
 
     /**
@@ -37,7 +38,7 @@ class GuestPolicy
      */
     public function update(User $user, Guest $guest): bool
     {
-        //
+
     }
 
     /**
@@ -45,7 +46,7 @@ class GuestPolicy
      */
     public function delete(User $user, Guest $guest): bool
     {
-        //
+
     }
 
     /**
@@ -53,7 +54,7 @@ class GuestPolicy
      */
     public function restore(User $user, Guest $guest): bool
     {
-        //
+
     }
 
     /**
@@ -61,6 +62,6 @@ class GuestPolicy
      */
     public function forceDelete(User $user, Guest $guest): bool
     {
-        //
+
     }
 }

@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\Table;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
-class TablePolicy
+final class TablePolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        //
+
     }
 
     /**
@@ -21,7 +22,7 @@ class TablePolicy
      */
     public function view(User $user, Table $table): bool
     {
-        //
+
     }
 
     /**
@@ -29,7 +30,7 @@ class TablePolicy
      */
     public function create(User $user): bool
     {
-        //
+
     }
 
     /**
@@ -37,7 +38,7 @@ class TablePolicy
      */
     public function update(User $user, Table $table): bool
     {
-        //
+
     }
 
     /**
@@ -45,7 +46,7 @@ class TablePolicy
      */
     public function delete(User $user, Table $table): bool
     {
-        //
+
     }
 
     /**
@@ -53,7 +54,7 @@ class TablePolicy
      */
     public function restore(User $user, Table $table): bool
     {
-        //
+
     }
 
     /**
@@ -61,6 +62,6 @@ class TablePolicy
      */
     public function forceDelete(User $user, Table $table): bool
     {
-        //
+
     }
 }

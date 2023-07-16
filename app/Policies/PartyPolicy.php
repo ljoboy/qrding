@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\Party;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
-class PartyPolicy
+final class PartyPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        //
+
     }
 
     /**
@@ -21,7 +22,7 @@ class PartyPolicy
      */
     public function view(User $user, Party $party): bool
     {
-        //
+
     }
 
     /**
@@ -29,7 +30,7 @@ class PartyPolicy
      */
     public function create(User $user): bool
     {
-        //
+
     }
 
     /**
@@ -37,7 +38,7 @@ class PartyPolicy
      */
     public function update(User $user, Party $party): bool
     {
-        //
+
     }
 
     /**
@@ -45,7 +46,7 @@ class PartyPolicy
      */
     public function delete(User $user, Party $party): bool
     {
-        //
+
     }
 
     /**
@@ -53,7 +54,7 @@ class PartyPolicy
      */
     public function restore(User $user, Party $party): bool
     {
-        //
+
     }
 
     /**
@@ -61,6 +62,6 @@ class PartyPolicy
      */
     public function forceDelete(User $user, Party $party): bool
     {
-        //
+
     }
 }

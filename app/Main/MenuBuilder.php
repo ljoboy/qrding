@@ -1,14 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Main;
 
 use App\Enums\LayoutEnum;
 
-class MenuBuilder
+final class MenuBuilder
 {
     /**
      * List of side menu items.
-     *
      */
     public static function menu(LayoutEnum $layout): array
     {
