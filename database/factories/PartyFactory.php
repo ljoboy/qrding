@@ -23,6 +23,7 @@ final class PartyFactory extends Factory
             'name' => fake()->jobTitle,
             'start_time' => fake()->dateTimeBetween('now', '+1 week'),
             'duration' => fake()->numberBetween(60, 6000),
+            'phone' => fake()->E164PhoneNumber(),
         ];
     }
 }

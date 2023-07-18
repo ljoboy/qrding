@@ -15,6 +15,7 @@ return new class () extends Migration {
         Schema::create('parties', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
+            $table->string('phone');
             $table->time('start_time')->nullable();
             $table->UnsignedSmallInteger('duration')->comment('The duration in minutes')->nullable();
             $table->timestamps();
