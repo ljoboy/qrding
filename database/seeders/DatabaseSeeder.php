@@ -17,7 +17,7 @@ final class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
+             GuestSeeder::class,
         ]);
-        //        User::factory()->count(10)->create();
     }
 }

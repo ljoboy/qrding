@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\GuestType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,7 +20,7 @@ return new class () extends Migration {
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('qr_code')->nullable();
-            $table->enum('type', ['single', 'couple', 'family', 'group'])->default('single');
+            $table->enum('type', GuestType::getValues())->default('single');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->softDeletes();

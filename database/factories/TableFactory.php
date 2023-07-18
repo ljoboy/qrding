@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Table;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Table>
+ * @extends Factory<Table>
  */
 final class TableFactory extends Factory
 {
@@ -19,7 +20,9 @@ final class TableFactory extends Factory
     public function definition(): array
     {
         return [
-
+            'name' => fake()->city,
+            'seats' => fake()->numberBetween(1, 5),
+            'is_occupied' => fake()->boolean,
         ];
     }
 }

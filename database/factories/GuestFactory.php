@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Enums\GuestType;
+use App\Models\Guest;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Guest>
+ * @extends Factory<Guest>
  */
 final class GuestFactory extends Factory
 {
@@ -19,7 +21,10 @@ final class GuestFactory extends Factory
     public function definition(): array
     {
         return [
-
+            'name' => fake()->name(),
+            'phone' => fake()->E164PhoneNumber(),
+            'email' => fake()->unique()->safeEmail(),
+            'type' => fake()->randomElement(GuestType::getValues()),
         ];
     }
 }
