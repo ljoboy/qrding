@@ -12,6 +12,9 @@ final class MenuComposer
 {
     /**
      * Bind data to the view.
+     *
+     * @param View $view
+     * @return void
      */
     public function compose(View $view): void
     {
@@ -33,6 +36,8 @@ final class MenuComposer
 
     /**
      * Specify the layout to use for the current view.
+     * @param View $view
+     * @return LayoutEnum
      */
     public function layout(View $view): LayoutEnum
     {
@@ -50,6 +55,10 @@ final class MenuComposer
 
     /**
      * Determine the active menu item & submenu.
+     *
+     * @param string $pageName
+     * @param LayoutEnum $layout
+     * @return array
      */
     public function activeMenu(string $pageName, LayoutEnum $layout): array
     {
@@ -66,6 +75,10 @@ final class MenuComposer
 
     /**
      * Determine the active menu item & submenu.
+     *
+     * @param array $menu
+     * @param string $pageName
+     * @return array
      */
     private function findActiveMenu(array $menu, string $pageName): array
     {
