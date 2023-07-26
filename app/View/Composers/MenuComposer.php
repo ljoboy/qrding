@@ -18,7 +18,7 @@ final class MenuComposer
      */
     public function compose(View $view): void
     {
-        if (!is_null(request()->route())) {
+        if (null !== request()->route()) {
             $pageName = request()->route()->getName();
             $layout = $this->layout($view);
             $activeMenu = $this->activeMenu($pageName, $layout);
@@ -50,7 +50,7 @@ final class MenuComposer
             $layout = request()->query('layout');
         }
 
-        return !is_null($layout) ? LayoutEnum::tryFrom($layout) : LayoutEnum::SIDEMENU;
+        return null !== $layout ? LayoutEnum::tryFrom($layout) : LayoutEnum::SIDEMENU;
     }
 
     /**
