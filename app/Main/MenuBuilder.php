@@ -23,6 +23,14 @@ final class MenuBuilder
                 ],
             ],
             'devider',
+            'users' => [
+                'icon' => 'users',
+                'title' => 'Users',
+                'route_name' => 'users',
+                'params' => [
+                    'layout' => $layout->value,
+                ],
+            ],
         ];
     }
 }
