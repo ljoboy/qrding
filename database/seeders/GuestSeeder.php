@@ -20,7 +20,7 @@ final class GuestSeeder extends Seeder
         $party = Party::factory()->create();
         $tables = Table::factory()->count(50)->create(['party_id' => $party->id]);
         $guests = Guest::factory()->count(200)->create();
-        $guests->each(function (Guest $guest) use ($tables) {
+        $guests->each(function (Guest $guest) use ($tables): void {
             $table = $tables->random();
             $guest->table_id = $table->id;
             $guest->save();
